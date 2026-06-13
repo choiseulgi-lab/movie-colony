@@ -3,7 +3,7 @@
 
   /* ── Supabase 설정 ─────────────────────────────────── */
   const SUPABASE_URL  = 'https://tgftqomhjemenlaemqwj.supabase.co';
-  const SUPABASE_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRnZnRxb21oamVtZW5sYWVtcXdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyOTA3MjQsImV4cCI6MjA5Njg2NjcyNH0.Hw9AiFtEX9bBVDVNMkOOHD4-wUq7Q9NlQZz1Aug7i8o';
+  const SUPABASE_KEY  = 'sb_publishable_BqTcsj8CXbs89PLiN6W0eQ_7EaXHw-I';
   const TABLE         = 'guestbook';
 
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
