@@ -65,68 +65,10 @@
 
     nameInput.value  = '';
     contentEl.value  = '';
-    charCount.textContent = '0';
     msgEl.style.color = '#a0a0b0';
     msgEl.textContent = '응원이 등록되었습니다!';
     setTimeout(() => { msgEl.textContent = ''; }, 3000);
   });
 
-  /* ── 3. 피드 렌더링 ────────────────────────────────── */
-  const feed = document.getElementById('signal-feed');
-
-  function renderItem(row, prepend = false) {
-    const li = document.createElement('li');
-    li.className = 'signal-feed-item';
-    li.innerHTML = `
-      <span class="feed-content">${escapeHtml(row.content)}</span>
-      <span class="feed-name">${escapeHtml(row.name)}</span>
-    `;
-    if (prepend) {
-      feed.prepend(li);
-    } else {
-      feed.appendChild(li);
-    }
-  }
-
-  function escapeHtml(str) {
-    return str
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
-  async function loadFeed() {
-    const { data, error } = await sb
-      .from(TABLE)
-      .select('id, name, content, created_at')
-      .order('created_at', { ascending: false })
-      .limit(30);
-
-    if (error) { console.error('[SIGNAL] loadFeed error:', error); return; }
-    if (!data) return;
-
-    if (data.length === 0) {
-      feed.innerHTML = '<li class="signal-feed-empty">첫 번째 응원을 남겨보세요!</li>';
-      return;
-    }
-
-    feed.innerHTML = '';
-    data.forEach(function (row) { renderItem(row, false); });
-  }
-
-  /* ── 4. Realtime 구독 ──────────────────────────────── */
-  sb.channel('guestbook-realtime')
-    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: TABLE },
-      function (payload) {
-        const emptyEl = feed.querySelector('.signal-feed-empty');
-        if (emptyEl) emptyEl.remove();
-        renderItem(payload.new, true);
-      }
-    )
-    .subscribe();
-
-  /* 초기 데이터 로드 */
-  loadFeed();
-
+  /* ── Realtime 구독 (카운터 증가 연동) ──────────────── */
 })();

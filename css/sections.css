@@ -833,66 +833,8 @@
   color: var(--color-crimson-light);
 }
 
-/* 댓글 피드 */
-.signal-feed-wrap {
-  max-width: 720px;
-  margin: 0 auto;
-  position: relative;
-  height: 320px;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
-}
-
-.signal-feed {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  list-style: none;
-}
-
-.signal-feed-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: var(--space-4);
-  padding: var(--space-4) 0;
-  border-bottom: 1px solid var(--color-border-faint);
-  animation: feed-slide-in 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@keyframes feed-slide-in {
-  from { opacity: 0; transform: translateY(-12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.feed-content {
-  font-size: var(--fs-sm);
-  color: var(--color-text-primary);
-  flex: 1;
-  word-break: keep-all;
-}
-
-.feed-name {
-  font-size: var(--fs-xs);
-  color: var(--color-crimson);
-  white-space: nowrap;
-  font-weight: var(--fw-medium);
-  letter-spacing: 0.04em;
-}
-
-.signal-feed-empty {
-  font-size: var(--fs-sm);
-  color: var(--color-text-muted);
-  text-align: center;
-  padding: var(--space-12) 0;
-}
-
 @media (max-width: 767px) {
   .signal-input--name {
     width: 80px;
-  }
-  .signal-feed-wrap {
-    height: 260px;
   }
 }
