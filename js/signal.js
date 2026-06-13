@@ -3,7 +3,7 @@
 
   /* ── Supabase 설정 ─────────────────────────────────── */
   const SUPABASE_URL  = 'https://tgftqomhjemenlaemqwj.supabase.co';
-  const SUPABASE_KEY  = 'sb_publishable_BqTcsj8CXbs89PLiN6W0eQ_7EaXHw-I';
+  const SUPABASE_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRnZnRxb21oamVtZW5sYWVtcXdqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyOTA3MjQsImV4cCI6MjA5Njg2NjcyNH0.Hw9AiFtEX9bBVDVNMkOOHD4-wUq7Q9NlQZz1Aug7i8o';
   const TABLE         = 'guestbook';
 
   const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -62,8 +62,9 @@
     submitBtn.textContent = '등록하기';
 
     if (error) {
+      console.error('[SIGNAL] insert error:', error);
       msgEl.style.color = '#f43f6a';
-      msgEl.textContent = '등록에 실패했습니다. 잠시 후 다시 시도해 주세요.';
+      msgEl.textContent = '오류: ' + (error.message || '등록에 실패했습니다.');
       return;
     }
 
@@ -107,7 +108,8 @@
       .order('created_at', { ascending: false })
       .limit(30);
 
-    if (error || !data) return;
+    if (error) { console.error('[SIGNAL] loadFeed error:', error); return; }
+    if (!data) return;
 
     if (data.length === 0) {
       feed.innerHTML = '<li class="signal-feed-empty">첫 번째 응원을 남겨보세요!</li>';
