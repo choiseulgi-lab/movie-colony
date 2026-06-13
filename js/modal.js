@@ -7,7 +7,6 @@
   const closeBtn = document.getElementById('modal-close');
   const openers = [
     document.getElementById('btn-trailer'),
-    document.getElementById('btn-trailer-header'),
   ];
 
   function openModal() {

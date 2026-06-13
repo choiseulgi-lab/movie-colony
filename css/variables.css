@@ -25,9 +25,9 @@
   --color-divider:      rgba(255, 255, 255, 0.08);
 
   /* ── 뱃지 ───────────────────────────────── */
-  --color-badge-bg:     rgba(225, 29, 72, 0.12);
-  --color-badge-text:   #f43f6a;
-  --color-badge-border: rgba(225, 29, 72, 0.30);
+  --color-badge-bg:     rgba(255, 255, 255, 0.06);
+  --color-badge-text:   #a0a0b0;
+  --color-badge-border: rgba(255, 255, 255, 0.18);
 
   /* ── 버튼 ───────────────────────────────── */
   --color-btn-primary-bg:      #e11d48;
