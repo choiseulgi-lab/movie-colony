@@ -159,16 +159,6 @@
     0 2px 20px rgba(0, 0, 0, 0.70);
 }
 
-/* 구분선 */
-.hero-title-ko::after {
-  content: '';
-  display: block;
-  width: 48px;
-  height: 2px;
-  background: var(--color-crimson);
-  margin-top: var(--space-6);
-  box-shadow: 0 0 12px var(--color-crimson-glow);
-}
 
 /* 시놉시스 */
 .hero-synopsis {
