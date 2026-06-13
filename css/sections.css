@@ -693,3 +693,205 @@
     transform: scale(1.04);
   }
 }
+
+/* ── SIGNAL ───────────────────────────────────────────── */
+.section-signal {
+  padding: var(--space-24) 0;
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border-faint);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 배경 글로우 */
+.section-signal::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(225,29,72,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* 상단 현황판 */
+.signal-header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+.signal-counter {
+  margin-top: var(--space-6);
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.02em;
+}
+
+/* Neon Glow 숫자 */
+.signal-count {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  color: var(--color-crimson-light);
+  letter-spacing: 0.06em;
+}
+
+.neon-glow {
+  text-shadow:
+    0 0 6px rgba(225,29,72,0.9),
+    0 0 14px rgba(225,29,72,0.7),
+    0 0 28px rgba(225,29,72,0.5),
+    0 0 56px rgba(225,29,72,0.25);
+  animation: neon-pulse 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes neon-pulse {
+  from { text-shadow: 0 0 6px rgba(225,29,72,0.9), 0 0 14px rgba(225,29,72,0.7), 0 0 28px rgba(225,29,72,0.5), 0 0 56px rgba(225,29,72,0.25); }
+  to   { text-shadow: 0 0 10px rgba(225,29,72,1.0), 0 0 24px rgba(225,29,72,0.9), 0 0 48px rgba(225,29,72,0.65), 0 0 80px rgba(225,29,72,0.35); }
+}
+
+/* 입력 폼 */
+.signal-form {
+  max-width: 720px;
+  margin: 0 auto var(--space-12);
+}
+
+.signal-form-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.signal-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  position: relative;
+}
+
+.signal-label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.06em;
+}
+
+.signal-label span {
+  color: var(--color-crimson);
+}
+
+.signal-input,
+.signal-textarea {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--color-crimson);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  padding: var(--space-3) var(--space-4);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  outline: none;
+  resize: none;
+  width: 100%;
+}
+
+.signal-input::placeholder,
+.signal-textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.signal-input:focus,
+.signal-textarea:focus {
+  border-color: var(--color-crimson-light);
+  box-shadow: 0 0 0 2px rgba(225,29,72,0.18);
+}
+
+.signal-char-count {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  text-align: right;
+  position: absolute;
+  bottom: var(--space-2);
+  right: var(--space-3);
+}
+
+.signal-submit {
+  width: 100%;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+.signal-msg {
+  margin-top: var(--space-3);
+  font-size: var(--fs-xs);
+  text-align: center;
+  min-height: 1.2em;
+  color: var(--color-crimson-light);
+}
+
+/* 댓글 피드 */
+.signal-feed-wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 40%, transparent 100%);
+}
+
+.signal-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  list-style: none;
+}
+
+.signal-feed-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--color-border-faint);
+  animation: feed-slide-in 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes feed-slide-in {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.feed-content {
+  font-size: var(--fs-sm);
+  color: var(--color-text-primary);
+  flex: 1;
+  word-break: keep-all;
+}
+
+.feed-name {
+  font-size: var(--fs-xs);
+  color: var(--color-crimson);
+  white-space: nowrap;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.04em;
+}
+
+.signal-feed-empty {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: var(--space-12) 0;
+}
+
+/* 모바일 폼 세로 배치 */
+@media (max-width: 767px) {
+  .signal-form-row {
+    grid-template-columns: 1fr;
+  }
+  .signal-feed-wrap {
+    height: 260px;
+  }
+}

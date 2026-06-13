@@ -520,6 +520,61 @@
       </div>
     </section>
 
+    <!-- ── SECTION 8: SIGNAL ────────────────────────────── -->
+    <section class="section-signal" id="signal" aria-labelledby="signal-title">
+      <div class="container">
+
+        <!-- 1. 실시간 응원 현황판 -->
+        <div class="signal-header">
+          <p class="section-label">SIGNAL</p>
+          <h2 class="section-title" id="signal-title">군체를 향한 실시간 응원 주파수</h2>
+          <p class="signal-counter">
+            지금 <span class="signal-count neon-glow" id="signal-count">45,219</span>명이 함께 생존 사투를 응원하고 있습니다.
+          </p>
+        </div>
+
+        <!-- 2. 한 줄 응원 입력창 -->
+        <form class="signal-form" id="signal-form" novalidate>
+          <div class="signal-form-row">
+            <div class="signal-field">
+              <label for="signal-name" class="signal-label">이름 <span aria-hidden="true">*</span></label>
+              <input
+                type="text"
+                id="signal-name"
+                class="signal-input"
+                placeholder="이름을 입력하세요"
+                maxlength="20"
+                required
+                autocomplete="off"
+              />
+            </div>
+            <div class="signal-field signal-field--content">
+              <label for="signal-content" class="signal-label">응원 메시지 <span aria-hidden="true">*</span></label>
+              <textarea
+                id="signal-content"
+                class="signal-textarea"
+                placeholder="한 줄 응원 메시지를 남겨주세요 (최대 100자)"
+                maxlength="100"
+                rows="2"
+                required
+              ></textarea>
+              <span class="signal-char-count"><span id="signal-char">0</span>/100</span>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary signal-submit" id="signal-submit">
+            등록하기
+          </button>
+          <p class="signal-msg" id="signal-msg" aria-live="polite"></p>
+        </form>
+
+        <!-- 3. 실시간 댓글 피드 -->
+        <div class="signal-feed-wrap">
+          <ul class="signal-feed" id="signal-feed" role="list" aria-label="응원 메시지 피드"></ul>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
   <!-- ── FOOTER ────────────────────────────────────────── -->
@@ -565,9 +620,11 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script src="js/modal.js"></script>
   <script src="js/animation.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/signal.js"></script>
 
 </body>
 </html>
