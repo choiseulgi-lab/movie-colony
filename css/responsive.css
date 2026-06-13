@@ -1,0 +1,223 @@
+/* ========================================================
+   RESPONSIVE — 군체 (GUNCHE)
+   Desktop  1200px+  : 기본 (4열 그리드)
+   Tablet   768~1199px : 2열 그리드
+   Mobile   ~767px   : 1열 그리드
+   ======================================================== */
+
+/* ── TABLET (768px ~ 1199px) ─────────────────────────── */
+@media (max-width: 1199px) {
+
+  /* 명장면 3열 → 2열 */
+  .scenes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 출연진 3열 → 2열 */
+  .cast-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 추천 4열 → 2열 */
+  .rec-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* synopsis 2열 → 1열 */
+  .synopsis-inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  .synopsis-meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-6) var(--space-10);
+  }
+
+  .meta-item--cast {
+    flex-basis: 100%;
+  }
+}
+
+/* ── MOBILE (~ 767px) ────────────────────────────────── */
+@media (max-width: 767px) {
+
+  /* 헤더 네비 모바일 처리 */
+  .header-nav {
+    display: none;
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 15, 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--space-4) var(--container-px);
+    border-bottom: 1px solid var(--color-border-faint);
+    z-index: 99;
+  }
+
+  .header-nav.is-open {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--color-border-faint);
+    font-size: var(--fs-body);
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+
+  .btn-sm.btn-primary {
+    margin-top: var(--space-4);
+    text-align: center;
+    justify-content: center;
+    padding: var(--space-4);
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  /* nav-toggle 열린 상태 */
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* hero — 모바일에서 포스터 배경 초점 중앙으로 */
+  .hero-bg {
+    background-position: 62% 15%;
+    transform: scale(1.0);
+  }
+  .hero-content {
+    padding-bottom: var(--space-20);
+  }
+  .hero-text {
+    max-width: 100%;
+  }
+  .hero-title-en {
+    letter-spacing: 0.06em;
+  }
+  .hero-title-ko {
+    letter-spacing: 0.18em;
+  }
+  .hero-synopsis br {
+    display: none;
+  }
+  .hero-cta {
+    flex-direction: column;
+  }
+  .hero-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* synopsis 메타 세로 배치 */
+  .synopsis-meta {
+    flex-direction: column;
+  }
+
+  /* 명장면 1열 */
+  .scenes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 출연진 1열 */
+  .cast-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 출연진 카드 가로 레이아웃 */
+  .cast-card {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+  }
+
+  .cast-img-wrap {
+    aspect-ratio: auto;
+    height: 130px;
+  }
+
+  /* 비하인드 1열 */
+  .behind-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* 추천 1열 */
+  .rec-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 섹션 패딩 축소 */
+  .section-synopsis,
+  .section-scenes,
+  .section-quote,
+  .section-cast,
+  .section-behind,
+  .section-recommended {
+    padding: var(--space-16) 0;
+  }
+
+  /* 섹션 헤더 마진 축소 */
+  .section-header {
+    margin-bottom: var(--space-8);
+  }
+
+  /* 명대사 */
+  .quote-text br {
+    display: none;
+  }
+
+  /* 모달 */
+  .modal-inner {
+    width: 95vw;
+  }
+
+  /* hover 효과 제거 — 터치 환경 */
+  .scene-card,
+  .cast-card,
+  .behind-card,
+  .rec-card {
+    transition: none;
+  }
+
+  /* 터치 피드백 */
+  .scene-card:active,
+  .cast-card:active,
+  .behind-card:active,
+  .rec-card:active {
+    opacity: 0.80;
+  }
+
+  .btn:active {
+    opacity: 0.80;
+    transform: scale(0.98);
+  }
+}
+
+/* ── 아주 작은 화면 (~ 374px) ────────────────────────── */
+@media (max-width: 374px) {
+  .rec-grid {
+    grid-template-columns: 1fr;
+  }
+  .cast-card {
+    grid-template-columns: 1fr;
+  }
+  .cast-img-wrap {
+    height: auto;
+    aspect-ratio: 3 / 2;
+  }
+}
