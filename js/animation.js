@@ -1,3 +1,23 @@
+/* 모바일 명장면 스크롤 인터렉션 */
+(function () {
+  if (!window.matchMedia('(hover: none)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+
+  var sceneCards = document.querySelectorAll('.scene-card');
+
+  var sceneObs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('scene-in-view');
+      } else {
+        entry.target.classList.remove('scene-in-view');
+      }
+    });
+  }, { threshold: 0.55 });
+
+  sceneCards.forEach(function (card) { sceneObs.observe(card); });
+})();
+
 /* 스크롤 진입 시 fade-up 애니메이션 */
 (function () {
   var targets = document.querySelectorAll(
