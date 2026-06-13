@@ -32,13 +32,8 @@
   const form       = document.getElementById('signal-form');
   const nameInput  = document.getElementById('signal-name');
   const contentEl  = document.getElementById('signal-content');
-  const charCount  = document.getElementById('signal-char');
   const submitBtn  = document.getElementById('signal-submit');
   const msgEl      = document.getElementById('signal-msg');
-
-  contentEl.addEventListener('input', function () {
-    charCount.textContent = contentEl.value.length;
-  });
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();

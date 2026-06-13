@@ -753,74 +753,76 @@
 
 /* 입력 폼 */
 .signal-form {
-  max-width: 720px;
+  max-width: 760px;
   margin: 0 auto var(--space-12);
 }
 
-.signal-form-row {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: var(--space-4);
-  margin-bottom: var(--space-4);
-}
-
-.signal-field {
+.signal-bar {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  position: relative;
-}
-
-.signal-label {
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-medium);
-  color: var(--color-text-secondary);
-  letter-spacing: 0.06em;
-}
-
-.signal-label span {
-  color: var(--color-crimson);
-}
-
-.signal-input,
-.signal-textarea {
+  align-items: center;
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--color-crimson);
   border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: box-shadow var(--transition-fast);
+}
+
+.signal-bar:focus-within {
+  box-shadow: 0 0 0 2px rgba(225,29,72,0.22);
+}
+
+.signal-input {
+  background: transparent;
+  border: none;
   color: var(--color-text-primary);
   font-family: var(--font-sans);
   font-size: var(--fs-sm);
-  padding: var(--space-3) var(--space-4);
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  padding: var(--space-4) var(--space-5);
   outline: none;
-  resize: none;
-  width: 100%;
 }
 
-.signal-input::placeholder,
-.signal-textarea::placeholder {
+.signal-input--name {
+  width: 140px;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(225,29,72,0.30);
+}
+
+.signal-input--msg {
+  flex: 1;
+  min-width: 0;
+}
+
+.signal-input::placeholder {
   color: var(--color-text-muted);
 }
 
-.signal-input:focus,
-.signal-textarea:focus {
-  border-color: var(--color-crimson-light);
-  box-shadow: 0 0 0 2px rgba(225,29,72,0.18);
+.signal-divider {
+  display: none;
 }
 
-.signal-char-count {
-  font-size: 0.7rem;
-  color: var(--color-text-muted);
-  text-align: right;
-  position: absolute;
-  bottom: var(--space-2);
-  right: var(--space-3);
+.signal-submit-btn {
+  background: var(--color-crimson);
+  color: #fff;
+  border: none;
+  padding: var(--space-4) var(--space-6);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  flex-shrink: 0;
+  height: 100%;
+  transition: background var(--transition-fast);
+  white-space: nowrap;
 }
 
-.signal-submit {
-  width: 100%;
-  justify-content: center;
-  padding: var(--space-4);
+.signal-submit-btn:hover {
+  background: var(--color-crimson-dark);
+}
+
+.signal-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .signal-msg {
@@ -886,10 +888,9 @@
   padding: var(--space-12) 0;
 }
 
-/* 모바일 폼 세로 배치 */
 @media (max-width: 767px) {
-  .signal-form-row {
-    grid-template-columns: 1fr;
+  .signal-input--name {
+    width: 80px;
   }
   .signal-feed-wrap {
     height: 260px;

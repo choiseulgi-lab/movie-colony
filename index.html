@@ -535,35 +535,28 @@
 
         <!-- 2. 한 줄 응원 입력창 -->
         <form class="signal-form" id="signal-form" novalidate>
-          <div class="signal-form-row">
-            <div class="signal-field">
-              <label for="signal-name" class="signal-label">이름 <span aria-hidden="true">*</span></label>
-              <input
-                type="text"
-                id="signal-name"
-                class="signal-input"
-                placeholder="이름을 입력하세요"
-                maxlength="20"
-                required
-                autocomplete="off"
-              />
-            </div>
-            <div class="signal-field signal-field--content">
-              <label for="signal-content" class="signal-label">응원 메시지 <span aria-hidden="true">*</span></label>
-              <textarea
-                id="signal-content"
-                class="signal-textarea"
-                placeholder="한 줄 응원 메시지를 남겨주세요 (최대 100자)"
-                maxlength="100"
-                rows="2"
-                required
-              ></textarea>
-              <span class="signal-char-count"><span id="signal-char">0</span>/100</span>
-            </div>
+          <div class="signal-bar">
+            <input
+              type="text"
+              id="signal-name"
+              class="signal-input signal-input--name"
+              placeholder="이름"
+              maxlength="20"
+              required
+              autocomplete="off"
+            />
+            <div class="signal-divider" aria-hidden="true"></div>
+            <input
+              type="text"
+              id="signal-content"
+              class="signal-input signal-input--msg"
+              placeholder="응원 메시지를 남겨주세요"
+              maxlength="100"
+              required
+              autocomplete="off"
+            />
+            <button type="submit" class="signal-submit-btn" id="signal-submit">등록</button>
           </div>
-          <button type="submit" class="btn btn-primary signal-submit" id="signal-submit">
-            등록하기
-          </button>
           <p class="signal-msg" id="signal-msg" aria-live="polite"></p>
         </form>
 
