@@ -70,5 +70,61 @@
     setTimeout(() => { msgEl.textContent = ''; }, 3000);
   });
 
-  /* ── Realtime 구독 (카운터 증가 연동) ──────────────── */
+  /* ── 3. 피드 렌더링 ────────────────────────────────── */
+  const feed = document.getElementById('signal-feed');
+
+  function escapeHtml(str) {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function renderItem(row, prepend) {
+    const li = document.createElement('li');
+    li.className = 'signal-feed-item';
+    li.innerHTML = `
+      <span class="feed-content">${escapeHtml(row.content)}</span>
+      <span class="feed-name">${escapeHtml(row.name)}</span>
+    `;
+    if (prepend) {
+      feed.prepend(li);
+    } else {
+      feed.appendChild(li);
+    }
+  }
+
+  async function loadFeed() {
+    const { data, error } = await sb
+      .from(TABLE)
+      .select('id, name, content, created_at')
+      .order('created_at', { ascending: false })
+      .limit(30);
+
+    if (error) { console.error('[SIGNAL] loadFeed error:', error); return; }
+    if (!data) return;
+
+    if (data.length === 0) {
+      feed.innerHTML = '<li class="signal-feed-empty">첫 번째 응원을 남겨보세요!</li>';
+      return;
+    }
+
+    feed.innerHTML = '';
+    data.forEach(function (row) { renderItem(row, false); });
+  }
+
+  /* ── 4. Realtime 구독 ──────────────────────────────── */
+  sb.channel('guestbook-realtime')
+    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: TABLE },
+      function (payload) {
+        const emptyEl = feed.querySelector('.signal-feed-empty');
+        if (emptyEl) emptyEl.remove();
+        renderItem(payload.new, true);
+      }
+    )
+    .subscribe();
+
+  loadFeed();
+
 })();
